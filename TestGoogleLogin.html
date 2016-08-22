@@ -1,0 +1,190 @@
+<html lang="en">
+  <head>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="331532792183-k9f2ht9m86oa0km9pa1m7a8fcvkg10od.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+  </head>
+  <body>
+    <h>Calendar V2</h>
+    <div id= "gsign" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <div>
+      <iframe id = "calendar" src ="" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+    </div>
+    <script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        if (googleUser.isSignedIn()){
+          
+        }
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+        showCalendar(profile.getEmail());
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      }
+      function showCalendar(userEmail){
+        console.log("Inside Show Calendar");
+        var part1 = "https://calendar.google.com/calendar/embed?";
+        var part2 = "src=" + userEmail; //email id from the user logged in goes here. 
+        var part3 = "&ctz=America/Los_Angeles";
+        var src = part1+part2+part3;
+        console.log(src);
+        document.getElementById('calendar').src = src;
+        console.log("Done changing src")
+      }
+      //ADDING EVENTS CODE
+      
+      function addevents(event){
+            
+            window.onLoadCallback = function(){
+              gapi.auth2.init({
+                  client_id: '331532792183-k9f2ht9m86oa0km9pa1m7a8fcvkg10od.apps.googleusercontent.com.apps.googleusercontent.com'
+                });
+            }
+            var request = gapi.client.calendar.events.insert({
+              'calendarId': 'primary',
+              'resource': event
+            });
+
+            request.execute(function(event) {
+              appendPre('Event created: ' + event.htmlLink);
+            });
+        }
+        
+    
+    function myFunction() {
+        var x = document.getElementById("frm1");
+        var text = "{";
+        var time = "";//YEAR-MO-DA
+        var i;
+        for (i = 0; i < x.length ;i++) {
+            if (x.elements[i].name.localeCompare("year") == 0){
+                time += x.elements[i].value + '-';
+            }
+            else if (x.elements[i].name.localeCompare("month") == 0){
+                time += x.elements[i].value + '-';
+            }
+            else if (x.elements[i].name.localeCompare("day") == 0){
+                time += x.elements[i].value ;
+            } else {
+                text += "'" + x.elements[i].name+ "':'";
+                text += x.elements[i].value + "', ";
+            }
+        }
+        
+        text += "'start': { 'dateTime':'" + time +"T09:00:00-07:00','timeZone': 'America/Los_Angeles'},'end': { 'dateTime':'" + time +"T17:00:00-07:00','timeZone': 'America/Los_Angeles'}}";
+        document.getElementById("demo").innerHTML = text;
+        var event = text;
+        addevents(event);
+    }
+    </script>
+    
+    <h1>Make an Event</h1>
+        
+        <fieldset>
+          <legend><span class="number"></span>Create New Event</legend>
+          <label for="name">Event Name:</label>
+          <form id="frm1" action="">
+            <input type="text" id="name" name="summary" value="Name">
+            <input type="text" id="description" name="description" value="Description">
+        <label for="date">Year:</label>
+        <select id="year" name="year">
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+            <option value="2028">2028</option>
+            <option value="2029">2029</option>
+            <option value="2030">2030</option>
+            <option value="2031">2031</option>
+            <option value="2032">2032</option>
+            <option value="2033">2033</option>
+            <option value="2034">2034</option>
+            <option value="2035">2035</option>
+            <option value="2036">2036</option>
+            <option value="2037">2037</option>
+            <option value="2038">2038</option>
+            <option value="2039">2039</option>
+            <option value="2040">2040</option>
+            <option value="2041">2041</option>'
+            <option value="2042">2042</option>
+            <option value="2043">2043</option>
+            <option value="2044">2044</option>
+            <option value="2045">2045</option>
+            <option value="2046">2046</option>
+            <option value="2047">2047</option>
+            <option value="2048">2048</option>
+            <option value="2049">2049</option>
+            <option value="2050">2050</option>
+        </select> 
+        <label for="date">Month:</label>
+        <select id="month" name="month">
+            <option value="01">January</option>
+            <option value="02">Feburary</option>
+            <option value="03">March</option>
+            <option value="04">April</option>
+            <option value="05">May</option>
+            <option value="06">June</option>
+            <option value="07">July</option>
+            <option value="08">August</option>
+            <option value="09">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select>
+        <label for="date">Day:</label>
+        <select id="day" name="day">
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="12">13</option>
+            <option value="12">14</option>
+            <option value="12">15</option>
+            <option value="12">16</option>
+            <option value="12">17</option>
+            <option value="12">18</option>
+            <option value="12">19</option>
+            <option value="12">20</option>
+            <option value="12">21</option>
+            <option value="12">22</option>
+            <option value="12">23</option>
+            <option value="12">24</option>
+            <option value="12">25</option>
+            <option value="12">26</option>'
+            <option value="12">27</option>
+            <option value="12">28</option>
+            <option value="12">29</option>
+            <option value="12">30</option>
+            <option value="12">31</option>
+        </select>
+        
+        </fieldset>
+        </form>
+        <button type="submit" onClick="myFunction()">Create</button>
+      </form>
+    <p id="demo"></p>
+  </body>
+</html>
