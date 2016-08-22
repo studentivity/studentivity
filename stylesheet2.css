@@ -8,9 +8,7 @@ body {
     height: 100%;
     padding-left: 0em;
     padding-right: 0em;
-    background-position: right top;
-    background-attachment: fixed;
-    background-repeat: none;
+    background-repeat: no-repeat;
 }
 ul.menu {
     list-style-type: none;
@@ -77,6 +75,6 @@ div.math {
 .jumbotron {
     margin-left: 3em;
     margin-right: 3em;
-    background-color:rgba(192,192,192,0.8);
+    background-color:rgba(192,192,192,0.7);
     
 }
