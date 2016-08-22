@@ -1,0 +1,44 @@
+<html lang="en">
+  <head>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="558843560879-ippst1fooukp95egb9mugn5jt6aj973p.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+  </head>
+  <body>
+    <h>Calendar V2</h>
+    <div id= "gsign" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <div>
+      <iframe id = "calendar" src ="" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+    </div>
+    <script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        if (googleUser.isSignedIn()){
+          
+        
+        }
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+        showCalendar(profile.getEmail());
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      }
+      function showCalendar(userEmail){
+        console.log("Inside Show Calendar");
+        var part1 = "https://calendar.google.com/calendar/embed?";
+        var part2 = "src=" + userEmail; //email id from the user logged in goes here. 
+        var part3 = "&ctz=America/Los_Angeles";
+        var src = part1+part2+part3;
+        console.log(src);
+        document.getElementById('calendar').src = src;
+        console.log("Done changing src")
+      }
+    </script>
+  </body>
+</html>

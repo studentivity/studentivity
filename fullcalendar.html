@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<link href='fullcalendar.css' rel='stylesheet' />
+<link href='fullcalendar.print.css' rel='stylesheet' media='print' />
+<script src='moment.min.js'></script>
+<script src='jquery.min.js'></script>
+<script src='fullcalendar.min.js'></script>
+<link rel="stylesheet" href="normalize.css">
+<link rel="stylesheet" href="style.css">
+
+<script>
+
+	$(document).ready(function() {
+		
+		$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,basicWeek,basicDay'
+			},
+			defaultDate: '2016-06-12',
+			editable: true,
+			eventLimit: true, // allow "more" link when too many events
+			events: [
+				{
+					title: 'All Day Event',
+					start: '2016-06-01'
+				},
+				{
+					title: 'Long Event',
+					start: '2016-06-07',
+					end: '2016-06-10'
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: '2016-06-09T16:00:00'
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: '2016-06-16T16:00:00'
+				},
+				{
+					title: 'Conference',
+					start: '2016-06-11',
+					end: '2016-06-13'
+				},
+				{
+					title: 'Meeting',
+					start: '2016-06-12T10:30:00',
+					end: '2016-06-12T12:30:00'
+				},
+				{
+					title: 'Lunch',
+					start: '2016-06-12T12:00:00'
+				},
+				{
+					title: 'Meeting',
+					start: '2016-06-12T14:30:00'
+				},
+				{
+					title: 'Happy Hour',
+					start: '2016-06-12T17:30:00'
+				},
+				{
+					title: 'Dinner',
+					start: '2016-06-12T20:00:00'
+				},
+				{
+					title: 'Birthday Party',
+					start: '2016-06-13T07:00:00'
+				},
+				{
+					title: 'Click for Google',
+					url: 'http://google.com/',
+					start: '2016-06-28'
+				}
+			]
+		});
+		
+	});
+
+</script>
+<style>
+
+	body {
+		margin: 40px 10px;
+		padding: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+	}
+
+	#calendar {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+</style>
+</head>
+<body>
+
+	<div id='calendar'></div>
+    <form action="fullcalendar.html" method="post">
+      
+        <h1>Make an Event</h1>
+        
+        <fieldset>
+          <legend><span class="number">1</span>Description</legend>
+          <label for="name">Event Name:</label>
+            <input type="text" id="name" name="title">
+         
+        <label for="date">Month:</label>
+        <select id="month" name="month">
+            <option value="01">January</option>
+            <option value="02">Feburary</option>
+            <option value="03">March</option>
+            <option value="04">April</option>
+            <option value="05">May</option>
+            <option value="06">June</option>
+            <option value="07">July</option>
+            <option value="08">August</option>
+            <option value="09">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select>
+        <label for="date">Day:</label>
+        <select id="day" name="day">
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="12">13</option>
+            <option value="12">14</option>
+            <option value="12">15</option>
+            <option value="12">16</option>
+            <option value="12">17</option>
+            <option value="12">18</option>
+            <option value="12">19</option>
+            <option value="12">20</option>
+            <option value="12">21</option>
+            <option value="12">22</option>
+            <option value="12">23</option>
+            <option value="12">24</option>
+            <option value="12">25</option>
+            <option value="12">26</option>'
+            <option value="12">27</option>
+            <option value="12">28</option>
+            <option value="12">29</option>
+            <option value="12">30</option>
+            <option value="12">31</option>
+        </select>
+         <label for="date">Year:</label>
+        <select id="day" name="day">
+            <option value="01">2016</option>
+            <option value="02">2017</option>
+            <option value="03">2018</option>
+            <option value="04">2019</option>
+            <option value="05">2020</option>
+            <option value="06">2021</option>
+            <option value="07">2022</option>
+            <option value="08">2023</option>
+            <option value="09">2024</option>
+            <option value="10">2025</option>
+            <option value="11">2026</option>
+            <option value="12">2027</option>
+            <option value="12">2028</option>
+            <option value="12">2029</option>
+            <option value="12">2030</option>
+            <option value="12">2031</option>
+            <option value="12">2032</option>
+            <option value="12">2033</option>
+            <option value="12">2034</option>
+            <option value="12">2035</option>
+            <option value="12">2036</option>
+            <option value="12">2037</option>
+            <option value="12">2038</option>
+            <option value="12">2039</option>
+            <option value="12">2040</option>
+            <option value="12">2041</option>'
+            <option value="12">2042</option>
+            <option value="12">2043</option>
+            <option value="12">2044</option>
+            <option value="12">2045</option>
+            <option value="12">2046</option>
+            <option value="12">2047</option>
+            <option value="12">2048</option>
+            <option value="12">2049</option>
+            <option value="12">2050</option>
+        </select>
+         <label>Repeating:</label>
+            <input type="radio" id="under_13" value="under_13" name="user_age"><label for="under_13" class="light">Yes</label><br>
+            <input type="radio" id="over_13" value="over_13" name="user_age"><label for="over_13" class="light">No</label>
+        </fieldset>
+        <button type="submit">Create</button>
+      </form>
+</body>
+</html>

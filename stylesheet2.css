@@ -1,0 +1,81 @@
+@font-face{
+    font-family: dreamorphan;
+    src: url("dreamorphan.ttf");
+}
+body {
+    margin:0px;
+    width: 100%;
+    height: 100%;
+    padding-left: 0em;
+    padding-right: 0em;
+    background-position: right top;
+    background-attachment: fixed;
+}
+ul.menu {
+    list-style-type: none;
+    margin: 0px;
+    padding-left: 0em;
+    padding-right: 0em;
+    overflow: hidden;
+    background-color: #0f96a9;
+}
+
+li {
+    float: right;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none; 
+}
+
+li a:hover {
+    background-color: #237e8b;
+    text-decoration: none;
+}
+
+p2 {
+    text-align: left;
+    color : #000000;
+    font-family: Arial, Helvetica, serif;
+    text-indent: 50px;
+    font-size: 25px
+}
+
+h1 {
+    color: #000000;
+    font-family: dreamorphan;
+    font-size: 50px
+}
+h2 {
+    color: #000000;
+    font-family:dreamorphan;
+    font-siz: 35px;
+}
+
+h3, h4, h5,h6 {
+    color: #000000;
+    font-family: Arial, Helvetica, serif;
+}
+ol {  
+    list-style-type: circle;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, serif;
+    color : #000000;
+}
+
+div.math {
+    color: #000000;
+    font-family: Arial, Helvetica, serif;
+    color: #0E494E;
+}
+.jumbotron {
+    margin-left: 3em;
+    margin-right: 3em;
+    background-color:rgba(192,192,192,0.8);
+    
+}
