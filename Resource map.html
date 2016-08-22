@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Local Map </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <script src="loggout.js"></script>
+    <link rel="icon" href="Logo.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <!-- jQuery library -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <!-- Latest compiled JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel ="stylesheet" href="navbar.css">
+    <link rel ="stylesheet" href="stylesheet2.css">
+    <style>
+      html, body, #map {
+        margin: 0;
+        padding: 0;
+        height: 98%;
+      }
+    </style>  
+    </head>
+  <body background = 'water.jpg'>
+     <nav class="navbar navbar-inverse">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="#">Studentivity</a>
+                </div>
+                <ul class="nav navbar-nav">
+                  <li><a href="index2.html">Home</a></li>
+                  <li><a href="About2.html">About Us</a></li>
+                  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Productivity<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                      <li><a href="Calendar.html">Calendar &nbsp &nbsp &nbsp </a></li>
+                      <li class="active"><a href="Resource map.html">Study Spots &nbsp &nbsp &nbsp </a></li>
+                      <li><a href="resources.html">Resources &nbsp &nbsp &nbsp </a></li>
+                      <li><a href="Comments.html">Comments &nbsp &nbsp &nbsp </a></li>
+                    </ul>
+                  </li>
+                   <li><a href="stressed.html">Stressed?</a></li>
+                  <li><a href="index.html" onclick="logout()">Logout</a></li>
+                  </ul>
+              </div>
+            </nav>
+     <h1> <center> <u> Local Places to Study!</u> </center> </h1>
+            </br>
+            </br>
+            </br>
+    <center><h2> Libraries & coffeeshops! </h2> </center>
+        <div id="map"></div>
+        <script>
+          var map;
+          function initialize() {
+            map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 16,
+              center: new google.maps.LatLng(47.648055, -122.348490),
+              mapTypeId: 'roadmap',
+              styles: [
+                {
+                  featureType: 'road',
+                  elementType: 'geometry',
+                  stylers: [
+                    { color: '#000000' },
+                    { weight: 1.6 }
+                  ]
+                }, {
+                  featureType: 'road',
+                  elementType: 'labels',
+                  stylers: [
+                    { saturation: -100 },
+                    { invert_lightness: true }
+                  ]
+                }, {
+                  featureType: 'landscape',
+                  elementType: 'geometry',
+                  stylers: [
+                    { hue: '#ffff00' },
+                    { gamma: 1.4 },
+                    { saturation: 82 },
+                    { lightness: 96 }
+                  ]
+                }, {
+                  featureType: 'poi.school',
+                  elementType: 'geometry',
+                  stylers: [
+                    { hue: '#fff700' },
+                    { lightness: -15 },
+                    { saturation: 99 }
+                  ]
+                }, {
+                  featureType: 'poi',
+                  elementType: 'geometry',
+                  stylers: [
+                    { visibility: 'off' }
+                  ]
+                }, {
+                  featureType: 'poi.school',
+                  elementType: 'geometry',
+                  stylers: [
+                    { visibility: 'on' },
+                    { hue: '#fff700' },
+                    { lightness: -15 },
+                    { saturation: 99 }
+                  ]
+                }
+              ]
+            });
+        var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+        var icons = {
+          parking: {
+            icon: iconBase + 'parking_lot_maps.png'
+          },
+          library: {
+            icon: iconBase + 'library_maps.png'
+          },
+          info: {
+            icon: iconBase + 'info-i_maps.png'
+          },
+          coffee: {
+          icon:'http://maps.google.com/mapfiles/kml/pal2/icon62.png' 
+          },
+        };
+
+        function addMarker(feature) {
+          var marker = new google.maps.Marker({
+            position: feature.position,
+            icon: icons[feature.type].icon,
+            map: map
+          });
+        }
+
+        var features = [
+          {
+            position: new google.maps.LatLng(47.606600, -122.332984),
+            type: 'library'
+          }, {
+            position: new google.maps.LatLng(47.669828,-122.384315),
+            type: 'library'
+          }, {
+            position: new google.maps.LatLng(47.577981, -122.311368),
+            type: 'library'
+          }, {
+            position: new google.maps.LatLng(47.722957, -122.356098),
+            type: 'library'
+          },  {
+            position: new google.maps.LatLng(47.719716, -122.298113),
+            type: 'library'
+          }, {
+            position: new google.maps.LatLng(47.622929, -122.322318),
+            type: 'library'
+          },  {
+            position: new google.maps.LatLng(47.559901, -122.286959),
+            type: 'library'
+          }, {
+            position: new google.maps.LatLng(47.553156, -122.363364),
+            type: 'library'
+          }, {
+            position: new google.maps.LatLng(47.601918, -122.301650),
+            type: 'library'
+          }, {
+            position: new google.maps.LatLng(47.650062 ,-122.348423),
+            type: 'library'
+          }, {
+           position: new google.maps.LatLng(47.681494, -122.326659),
+            type: 'library'
+          }, {
+           position: new google.maps.LatLng(47.687452,-122.354757),
+            type: 'library'
+          }, {
+           position: new google.maps.LatLng(47.548063, -122.375875),
+            type: 'library'
+          }, {
+           position: new google.maps.LatLng(47.596233, -122.322784),
+            type: 'library'
+          }, {
+           position: new google.maps.LatLng(47.612675,-122.290020),
+            type: 'library'
+          }, {
+            position: new google.maps.LatLng(47.645323, -122.401436),
+            type: 'library'
+          }, {
+            position: new google.maps.LatLng(47.640520, -122.302401),
+            type: 'library'
+          }, {
+           position: new google.maps.LatLng(47.539208,-122.290419),
+           type: 'library'
+          }, { 
+           position: new google.maps.LatLng (47.678001, -122.290696),
+           type: 'library'
+          }, {
+           position: new google.maps.LatLng( 47.705987, -122.322842),
+           type: 'library'
+          }, {           
+          position: new google.maps.LatLng(47.633814, -122.362665),
+          type: 'library'
+          }, { 
+           position: new google.maps.LatLng(47.521357,-122.270538),
+           type: 'library'
+          }, { 
+           position: new google.maps.LatLng(47.526474,-122.322922),
+           type: 'library'
+          }, { 
+           position: new google.maps.LatLng(47.522435,-122.376274),
+           type: 'library'
+          }, { 
+           position: new google.maps.LatLng(47.665244, -122.317883),
+           type: 'library'
+          }, { 
+           position: new google.maps.LatLng(47.661180, -122.338931),
+           type: 'library'
+          }, { 
+            position: new google.maps.LatLng(47.582689,-122.384695),
+            type: 'library'
+          }, {
+            position: new google.maps.LatLng(47.606665,-122.335403),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.629838,-122.372060),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.629993, -122.339728),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.630066, -122.342610),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.609352, -122.316531),
+            type: 'coffee'
+          },{
+             position: new google.maps.LatLng(47.733646, -122.313151),
+            type: 'coffee'
+          },{
+           position: new google.maps.LatLng(47.732876, -122.291984),
+            type: 'coffee'
+          },{
+           position: new google.maps.LatLng(47.621458, -122.312304),
+            type: 'coffee'
+          },{
+           position: new google.maps.LatLng(47.648375, -122.377965),
+            type: 'coffee'
+          },{
+           position: new google.maps.LatLng(47.614104, -122.335351),
+            type: 'coffee'
+          },{
+           position: new google.maps.LatLng(47.608719, -122.340548),
+            type: 'coffee'
+          },{
+          position: new google.maps.LatLng(47.584200, -122.333899),
+            type: 'coffee'
+          },{
+          position: new google.maps.LatLng(47.603710, -122.335673),
+            type: 'coffee'
+          },{
+          position: new google.maps.LatLng(47.618376, -122.337649),
+            type: 'coffee'
+          },{
+          position: new google.maps.LatLng(47.641021, -122325562),
+            type: 'coffee'
+          },{
+          position: new google.maps.LatLng(47.599512, -122.301930),
+            type: 'coffee'
+          },{
+          position: new google.maps.LatLng(47.612604, -122.342671),
+            type: 'coffee'
+          },{
+          position: new google.maps.LatLng(47.606006,-122.336716),
+            type: 'coffee'
+          },{
+          position: new google.maps.LatLng(47.564283,-122.377056),
+            type: 'coffee'
+          },{
+          position: new google.maps.LatLng(47.658200, -122.313408),
+            type: 'coffee'
+          },{
+          position: new google.maps.LatLng(47.566638, -122.329786),
+            type: 'coffee'
+          },{
+          position: new google.maps.LatLng(47.607285, -122.334292),
+            type: 'coffee'
+          },{
+          position: new google.maps.LatLng( 47.609151, -122.335315),
+            type: 'coffee'
+          },{
+          position: new google.maps.LatLng( 47.597906, -122.328533),
+            type: 'coffee'
+          },{
+          position: new google.maps.LatLng(47.681400, -122.290689),
+            type: 'coffee'
+          },{
+          position: new google.maps.LatLng( 47.612349,-122.333257),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.724405, -122.345549),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.615758, -122.337218),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.611223, -122.347756),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.578816, -122.411166),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.775320, -122.342802),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.668908, -122.385023),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.660507, -122.369162),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.614051, -122.347205),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.608133, -122.337018),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.634224, -122.280858),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.544617, -122.387501),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.622993, -122.320588),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.610100, -122.337460),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.604505, -122.330604),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.547956, -122.321930),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.619428, -122.325057),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.610099, -122.322204),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.604981, -122.334249),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.614083, -122.342399),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.650166, -122.350138),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.679988, -122.325477),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.701785, -122.363740),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.716001, -122.297563),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.602289, -122.285385),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.639805, -122.399905),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.616956, -122.329667),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.545719, -122.285097),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.708932, -122.321518),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.708251, -122.332232),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.702228, -122.344116),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.612877, -122.335268),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.445815, -122.260085),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.677932, -122.354581),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.604781, -122.339960),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.610098, -122.342548),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.611426, -122.337493),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.608492, -122.336407),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.608756, -122.335938),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.608756, -122.335938),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.622948,-122.357090),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.558780, -122.285232),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.765890, -122.364512),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.675604, -122.317722),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.607636, -122.338118),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.621582, -122.350849),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.662638, -122.283265),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.596657, -122.327651),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.601875, -122.331913),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.580961,-122.335925),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.455648, -122.256631),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.454928, -122.252475),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.458709, -122.261215),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.465141, -122.267866),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.609240, -122.324199),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.622985, -122.336781),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.610201, -122.332534),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.610507, -122.334551),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.662626, -122.299708),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.664352, -122.298916),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.661578, -122.333093),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.599058, -122.332583),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.580979, -122.384093),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.621523, -122.338146),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.611502, -122.337273),
+            type: 'coffee'
+          },{
+            position: new google.maps.LatLng(47.522716, -122.365602),
+            type: 'coffee'
+          },
+        ];
+        
+        for (var i = 0, feature; feature = features[i]; i++) {
+          addMarker(feature);
+        }
+      }
+        onload=addMarker(library)
+        onload=addMarker(coffee)
+        
+
+    </script>
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZJSnBRCq069VikL7lx9P-7D20q17cBO8&callback=initialize">
+    </script>
+  </body>
+</html>
