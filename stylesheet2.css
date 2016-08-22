@@ -8,8 +8,8 @@ body {
     height: 100%;
     padding-left: 0em;
     padding-right: 0em;
-    background-repeat: no-repeat;
-    background-size: 100%;
+    background-repeat: none;
+    background-size: 100;
 }
 ul.menu {
     list-style-type: none;
