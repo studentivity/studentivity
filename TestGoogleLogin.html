@@ -1,16 +1,24 @@
-<html lang="en">
+<html>
   <head>
-    <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="213259494271-l1suuv0ifudbphkoh5kh7jpdqllqhp4o.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-  </head>
+
   <body>
-    <h>Calendar V2</h>
-    <div id= "gsign" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-    <div>
-      <iframe id = "calendar" src ="" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-    </div>
-    <script>
+    <script type="text/javascript">
+      // Your Client ID can be retrieved from your project in the Google
+      // Developer Console, https://console.developers.google.com
+      var CLIENT_ID = '331532792183-k9f2ht9m86oa0km9pa1m7a8fcvkg10od.apps.googleusercontent.com';
+
+      var SCOPES = ['https://www.googleapis.com/auth/calendar'];
+      function showCalendar(userEmail){
+        console.log("Inside Show Calendar");
+        var part1 = "https://calendar.google.com/calendar/embed?";
+        var part2 = "src=" + userEmail; //email id from the user logged in goes here. 
+        var part3 = "&ctz=America/Los_Angeles";
+        var src = part1+part2+part3;
+        console.log(src);
+        document.getElementById('calendar').src = src;
+        console.log("Done changing src")
+      }
+      
       function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
         if (googleUser.isSignedIn()){
@@ -28,28 +36,113 @@
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
       }
-      function showCalendar(userEmail){
-        console.log("Inside Show Calendar");
-        var part1 = "https://calendar.google.com/calendar/embed?";
-        var part2 = "src=" + userEmail; //email id from the user logged in goes here. 
-        var part3 = "&ctz=America/Los_Angeles";
-        var src = part1+part2+part3;
-        console.log(src);
-        document.getElementById('calendar').src = src;
-        console.log("Done changing src")
+      /**
+       * Check if current user has authorized this application.
+       */
+      function checkAuth() {
+        gapi.auth.authorize(
+          {
+            'client_id': CLIENT_ID,
+            'scope': SCOPES.join(' '),
+            'immediate': true
+          }, handleAuthResult);
       }
-      //ADDING EVENTS CODE
-      
-      
+
+      /**
+       * Handle response from authorization server.
+       *
+       * @param {Object} authResult Authorization result.
+       */
+      function handleAuthResult(authResult) {
+        var authorizeDiv = document.getElementById('authorize-div');
+        if (authResult && !authResult.error) {
+          // Hide auth UI, then load client library.
+          authorizeDiv.style.display = 'none';
+          loadCalendarApi();
+        } else {
+          // Show auth UI, allowing the user to initiate authorization by
+          // clicking authorize button.
+          authorizeDiv.style.display = 'inline';
+        }
+      }
+
+      /**
+       * Initiate auth flow in response to user clicking authorize button.
+       *
+       * @param {Event} event Button click event.
+       */
+      function handleAuthClick(event) {
+        gapi.auth.authorize(
+          {client_id: CLIENT_ID, scope: SCOPES, immediate: false},
+          handleAuthResult);
+        return false;
+      }
+
+      /**
+       * Load Google Calendar client library. List upcoming events
+       * once client library is loaded.
+       */
       function loadCalendarApi() {
-        gapi.client.load('calendar');
+        gapi.client.load('calendar', 'v3', listUpcomingEvents);
       }
-      
-      function addevents(event){
+
+      /**
+       * Print the summary and start datetime/date of the next ten events in
+       * the authorized user's calendar. If no events are found an
+       * appropriate message is printed.
+       */
+      function listUpcomingEvents() {
+        var request = gapi.client.calendar.events.list({
+          'calendarId': 'primary',
+          'timeMin': (new Date()).toISOString(),
+          'showDeleted': false,
+          'singleEvents': true,
+          'maxResults': 20,
+          'orderBy': 'startTime'
+        });
+
+        request.execute(function(resp) {
+          var events = resp.items;
+          appendPre('Upcoming events:');
+
+          if (events.length > 0) {
+            for (i = 0; i < events.length; i++) {
+              var event = events[i];
+              var when = event.start.dateTime;
+              if (!when) {
+                when = event.start.date;
+              }
+              appendPre(event.summary + ' (' + when + ')')
+            }
+          } else {
+            appendPre('No upcoming events found.');
+          }
+
+        });
+        
+        addevents();
+      }
+
+      /**
+       * Append a pre element to the body containing the given message
+       * as its text node.
+       *
+       * @param {string} message Text to be placed in pre element.
+       */
+      function appendPre(message) {
+        var pre = document.getElementById('output');
+        var textContent = document.createTextNode(message + '\n');
+        pre.appendChild(textContent);
+      }
+    // Refer to the JavaScript quickstart on how to setup the environment:
+    // https://developers.google.com/google-apps/calendar/quickstart/js
+    // Change the scope to 'https://www.googleapis.com/auth/calendar' and delete any
+    // stored credentials.
+    function addevents(event){
             
             window.onLoadCallback = function(){
               gapi.auth2.init({
-                  client_id: '213259494271-l1suuv0ifudbphkoh5kh7jpdqllqhp4o.apps.googleusercontent.com.apps.googleusercontent.com'
+                  client_id: '331532792183-k9f2ht9m86oa0km9pa1m7a8fcvkg10od.apps.googleusercontent.com.apps.googleusercontent.com'
                 });
             }
             var request = gapi.client.calendar.events.insert({
@@ -88,7 +181,39 @@
         var event = text;
         addevents(event);
     }
+    
+    
+</script>
+    <script src="https://apis.google.com/js/client.js?onload=checkAuth">
     </script>
+  </head>
+  <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+        showCalendar(profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      };
+    </script>
+  <div id="authorize-div" style="display: none">
+      <span>Authorize access to Google Calendar API</span>
+      <!--Button for the user to click to initiate auth sequence -->
+      <button id="authorize-button" onclick="handleAuthClick(event)">
+        Authorize
+      </button>
+    </div>
+    <pre id="output"></pre>
+    
     
     <h1>Make an Event</h1>
         
@@ -178,7 +303,7 @@
             <option value="12">23</option>
             <option value="12">24</option>
             <option value="12">25</option>
-            <option value="12">26</option>'
+            <option value="12">26</option>
             <option value="12">27</option>
             <option value="12">28</option>
             <option value="12">29</option>
