@@ -20,6 +20,7 @@ img.hidden {
     display:none;
 }
 .jumbotron {
-    margin:0px;
+    margin:3px;
     background-color: #eee;
+    
 }
