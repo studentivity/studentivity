@@ -10,6 +10,7 @@ body {
     padding-right: 0em;
     background-repeat: none;
     background-size: 100;
+    background-attachment: fixed
 }
 ul.menu {
     list-style-type: none;
