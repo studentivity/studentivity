@@ -1,5 +1,11 @@
-#output {
+#calevents {
     background-color:rgba(192,192,192,0.8);
+    margin-left: 3em;
+    margin-right: 3em;
+    border: 0px;
+}
+#caldiv {
+    background-color:rgba(192,192,192,0.0);
     margin-left: 3em;
     margin-right: 3em;
     border: 0px;
