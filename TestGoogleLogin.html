@@ -299,16 +299,18 @@ function carousel() {
     <pre id="output" style="display:none></pre>
     
     
-   <h1>Make an Event</h1>
+   <h1>Make an Event</h1></center>
         
         <fieldset>
          <legend><span class="number"></span>Create New Event</legend>
-          <label for="name">Event Name:</label>
+          <label for="name">Event:</label>
           <form id="frm1" action="">
-            <center><input type="text" id="name" name="summary" value="Name"></center>
+            <label>Name:</label>
+            <input type="text" id="name" name="summary" value="Name">
+            <label>Description:</label>
             <input type="text" id="description" name="description" value="Description">
         <label for="date">Year:</label>
-        <center><select id="year" name="year"><center>
+        <select id="year" name="year">
             <option value="2016">2016</option>
             <option value="2017">2017</option>
             <option value="2018">2018</option>
@@ -346,7 +348,7 @@ function carousel() {
             <option value="2050">2050</option>
         </select> 
         <label for="date">Month:</label>
-        <center><select id="month" name="month"></center>
+        <select id="month" name="month">
             <option value="01">January</option>
             <option value="02">Feburary</option>
             <option value="03">March</option>
@@ -361,7 +363,7 @@ function carousel() {
             <option value="12">December</option>
         </select>
         <label for="date">Day:</label>
-        <center><select id="day" name="day"></center>
+        <select id="day" name="day">
             <option value="01">01</option>
             <option value="02">02</option>
             <option value="03">03</option>
@@ -397,7 +399,7 @@ function carousel() {
         
         </fieldset>
         </form>
-        <center><button type="submit" onClick="myFunction()">Create</button></center>
+        <button type="submit" onClick="myFunction()">Create</button>
       </form>
     <p id="demo"></p>
     <div>
