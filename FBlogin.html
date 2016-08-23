@@ -1,13 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Facebook Login</title>
-<meta charset="UTF-8">
- <meta name="google-signin-scope" content="profile email">
+<head lang ="en">
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial scale=1">
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <!-- jQuery library -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <!-- Latest compiled JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <link rel ="stylesheet" href="navbar.css">
+            <link rel ="stylesheet" href="stylesheet2.css">
+            <link rel ="stylesheet" href="navbar.css">
+        </head>
+         <title>Facebook Login</title>
+         <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="277166900765-qb7hi0qqo2gt1oshd9cmv4sgvn94k28d.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
-<body>
+ <body background ='water.jpg' >
+            <nav class="navbar navbar-inverse">
+             <div class="container-fluid">
+             <div class="navbar-header">
+                <a class="navbar-brand" href="#">Studentivity</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.html">Home</a></li>
+                <li><a href="About.html">About Us</a></li>
+                <li><a href="FBlogin.html">Sign In</a></li>
+            </ul>
+         </div>
+     </nav>
+ 
 <script>
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -103,6 +127,7 @@
 
 <div id="status">
 </div>
+<!---
 <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
     <script>
       function onSignIn(googleUser) {
@@ -115,10 +140,11 @@
         console.log("Image URL: " + profile.getImageUrl());
         console.log("Email: " + profile.getEmail());
 
-        // The ID token you need to pass to your backend:
+        // The ID token you nee to pass to your backend:
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
       };
     </script>
+    --->
 </body>
 </html>
